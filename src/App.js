@@ -17,7 +17,7 @@ ZoomMtg.prepareJssdk();
 
 function App(){
   return (
-    <Router>
+    <Router basename="/websdk-sample-react">
       <div>
 
         {/* A <Switch> looks through its children <Route>s and
