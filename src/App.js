@@ -26,10 +26,24 @@ function App(){
           <Route path="/room/:meetingNumber">
             <Room />
           </Route>
+          <Route path="/websdk-sample-react/test">
+            <Test />
+          </Route>		
+		  <Route path="/test">
+            <TestWithoutRoute />
+          </Route>	
         </Switch>
       </div>
     </Router>
   );	
+}
+
+function TestWithoutRoute(){
+	return <div>this is test page without route</div>
+}
+
+function Test(){
+	return <div>this is test page with route</div>
 }
 
 
