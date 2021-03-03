@@ -36,7 +36,7 @@ function App(){
 function Room() {
 
   // setup your signature endpoint here: https://github.com/zoom/websdk-sample-signature-node.js
-  var signatureEndpoint = 'http://localhost:4000' //'https://desolate-wave-37126.herokuapp.com/'
+  var signatureEndpoint = 'https://desolate-wave-37126.herokuapp.com/'
   var apiKey = 'QfdRaPVDRsWuI93xugQEpQ'
   var { meetingNumber } = useParams();
   var role = 0
