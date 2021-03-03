@@ -4,7 +4,8 @@ import {
   Switch,
   Route,
   Link,
-  useParams
+  useParams,
+  HashRouter 
 } from "react-router-dom";
 import './App.css';
 
@@ -17,7 +18,7 @@ ZoomMtg.prepareJssdk();
 
 function App(){
   return (
-    <Router>
+    <HashRouter basename="/">
       <div>
 
         {/* A <Switch> looks through its children <Route>s and
@@ -34,7 +35,7 @@ function App(){
           </Route>	
         </Switch>
       </div>
-    </Router>
+    </HashRouter>
   );	
 }
 
