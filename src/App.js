@@ -1,3 +1,11 @@
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams
+} from "react-router-dom";
 import './App.css';
 
 declare var ZoomMtg
@@ -7,16 +15,34 @@ ZoomMtg.setZoomJSLib('https://source.zoom.us/1.9.0/lib', '/av');
 ZoomMtg.preLoadWasm();
 ZoomMtg.prepareJssdk();
 
-function App() {
+function App(){
+  return (
+    <Router>
+      <div>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/room/:meetingNumber">
+            <Room />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );	
+}
+
+
+function Room() {
 
   // setup your signature endpoint here: https://github.com/zoom/websdk-sample-signature-node.js
-  var signatureEndpoint = ''
-  var apiKey = ''
-  var meetingNumber = '123456789'
+  var signatureEndpoint = 'http://localhost:4000' //'https://desolate-wave-37126.herokuapp.com/'
+  var apiKey = 'QfdRaPVDRsWuI93xugQEpQ'
+  var { meetingNumber } = useParams();
   var role = 0
   var leaveUrl = 'http://localhost:3000'
-  var userName = 'React'
-  var userEmail = ''
+  var userName = 'Tony Tèo'
+  var userEmail = 'linhnguyengts@gmail.com'
   var passWord = ''
 
   function getSignature(e) {
@@ -26,7 +52,7 @@ function App() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        meetingNumber: meetingNumber,
+        meetingNumber: parseInt(meetingNumber),
         role: role
       })
     }).then(res => res.json())
@@ -44,11 +70,10 @@ function App() {
       leaveUrl: leaveUrl,
       isSupportAV: true,
       success: (success) => {
-        console.log(success)
 
         ZoomMtg.join({
           signature: signature,
-          meetingNumber: meetingNumber,
+          meetingNumber: parseInt(meetingNumber),
           userName: userName,
           apiKey: apiKey,
           userEmail: userEmail,
